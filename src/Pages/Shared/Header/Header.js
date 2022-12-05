@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import img from '../../../assests/image.png'
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 const Header = () => {
+    const {user,logOut} = useContext(AuthContext);
+    const handlelogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div className="navbar bg-base-100 mt-2 mb-2">
             <div className="navbar-start">
@@ -28,9 +36,19 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 font-semibold">
-                    <li><a>Home</a></li>
+                    <Link to='/'><li><a>Home</a></li></Link>
 
-                    <li><a>Item 3</a></li>
+                    <Link className='btn btn-outline btn-danger' to='/prediction'><li><a>Prediction</a></li></Link>
+                    {/* <Link  to='/login'><li><a>Login</a></li></Link>
+                    <Link  to='/signup'><li><a>SignUp</a></li></Link> */}
+                    {user?.uid ?
+                        <>
+                           
+                            <li className=' rounded '><button onClick={handlelogout}>sign out</button></li>
+                        </>
+                        :
+                        <li className=' rounded '><Link to='/login'>Login</Link></li>}
+                    <li className=' rounded '><Link to='/signup'>Signup</Link></li>
                 </ul>
             </div>
             {/* <div className="navbar-end">

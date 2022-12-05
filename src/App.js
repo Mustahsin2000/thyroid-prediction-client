@@ -3,6 +3,9 @@ import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Pages/Home/Home/Home';
 import Main from './Layout/Main';
+import Prediction from './Pages/Prediction/Prediction';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/SignUp/SignUp';
 
 function App() {
   const router = createBrowserRouter([
@@ -13,7 +16,19 @@ function App() {
         {
             path:'/',
             element:<Home></Home>
-        }
+        },
+        {
+          path:'/prediction',
+          element:<Prediction></Prediction>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'/signup',
+          element:<SignUp></SignUp>
+        },
       
       ]
     }
